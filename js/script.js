@@ -143,39 +143,49 @@ const titleClickHandler = function (event) {
       link.addEventListener('click', tagClickHandler);
     }
 
-
   }
   
   addClickListenersToTags();
 
   function generateAuthors(){
-    /* find all articles */
     const articles = document.querySelectorAll(optArticleSelector);
-    /* START LOOP: for every article: */
     for (let article of articles) {
-    /* find tags wrapper */
       const authorWrapper = article.querySelector(optArticleAuthorSelector);
-      /* make html variable with empty string */
       let html = '';
-      /* get tags from data-tags attribute */
       const author = article.getAttribute('data-author'); 
-      /* generate HTML of the link */
-      const linkHTML = '<a href="#tag-' + author + '"><span>' + author + '</span></a>';
-      console.log(linkHTML);
-      /* add generated code to html variable */
+      const linkHTML = '<a href="#author-' + author + '"><span>' + author + '</span></a>';
       html = html + " "+ linkHTML;
-      /* insert HTML of all the links into the tags wrapper */
       authorWrapper.innerHTML = '';
-
       authorWrapper.innerHTML = html;
-    /* END LOOP: for every article: */
-    }
-    
-      
+    }    
   }
     
   generateAuthors();
+
+  function authorClickHandler(event){
+    event.preventDefault();
+    const clickedElement = this;
+    const href = clickedElement.getAttribute('href');
+    const author = href.replace('#author-', '');
+    const actveLinks = document.querySelectorAll('.post-author a.active');
+    for (let activeLink of actveLinks){
+      activeLink.classList.remove('active');
+    }
+    const authorLinks = document.querySelectorAll(author);
+    for (let authorLink of authorLinks){
+      authorLink.classList.add('active');
+    }
+    generateTitleLinks('[data-author="' + author + '"]');
+  }
   
+  function addClickListenersToAuthors(){
+    const links = document.querySelectorAll('.post-author a');
+
+    for (let link of links) {
+      link.addEventListener('click', authorClickHandler);
+    }
+  }
+  addClickListenersToAuthors(); 
   
 
 }
