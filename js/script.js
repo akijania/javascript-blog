@@ -89,14 +89,14 @@ const titleClickHandler = function (event) {
         /* generate HTML of the link */
         const linkHTML = '<li><a href="#tag-' + tag + '"><span>' + tag + '</span></a></li>';
         /* add generated code to html variable */
-        html = html + " "+ linkHTML;
+        html = html + ' '+ linkHTML;
         /* [NEW] check if this link is NOT already in allTags */
         if(!allTags[tag]) {
           /* [NEW] add tag to allTags object */
           allTags[tag] = 1;
-        } else allTags[tag]++;
-      }
-      console.log(allTags);
+        } else {allTags[tag]++;
+        }
+        console.log(allTags);
         /* END LOOP: for each tag */
       }
       /* insert HTML of all the links into the tags wrapper */
@@ -106,8 +106,18 @@ const titleClickHandler = function (event) {
     /* [NEW] find list of tags in right column */
     const tagList = document.querySelector('.tags');
 
-    /* [NEW] add html from allTags to tagList */
-    tagList.innerHTML = allTags.join(' ');
+    /* [NEW] create variable for all links HTML code */
+    let allTagsHTML = '';
+
+    /* [NEW] START LOOP: for each tag in allTags: */
+    for(let tag in allTags){
+      /* [NEW] generate code of a link and add it to allTagsHTML */
+      allTagsHTML += '<li><a href="#tag-' + tag + '"><span>' + tag + ' (' + allTags[tag] + ') ' + '</span></a></li>';
+    }
+    /* [NEW] END LOOP: for each tag in allTags: */
+
+    /*[NEW] add HTML from allTagsHTML to tagList */
+    tagList.innerHTML = allTagsHTML;
       
   }
     
@@ -182,8 +192,8 @@ const titleClickHandler = function (event) {
     const clickedElement = this;
     const href = clickedElement.getAttribute('href');
     const author = href.replace('#author-', '');
-    const actveLinks = document.querySelectorAll('.post-author a.active');
-    for (let activeLink of actveLinks){
+    const activeLinks = document.querySelectorAll('.post-author a.active');
+    for (let activeLink of activeLinks){
       activeLink.classList.remove('active');
     }
     const authorLinks = document.querySelectorAll(author);
