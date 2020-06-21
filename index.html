@@ -15,7 +15,6 @@
 				<aside class="sidebar">
 					<h2 class="section-title">All posts</h2>
 					<ul class="list titles">
-					
 					</ul>
 				</aside>
 				<section class="posts">
@@ -239,11 +238,9 @@
 				<aside class="sidebar">
 					<h2 class="section-title">Tags</h2>
 					<ul class="list tags">
-	
 					</ul>
 					<h2 class="section-title">Authors</h2>
-					<ul class="list authors">
-						
+					<ul class="list authors">	
 					</ul>
 				</aside>
 			</main>
@@ -258,6 +255,17 @@
 	  <script id="template-author-link" type="text/x-handlebars-template">
 		<a href="#author-{{ id }}"><span>{{ title }}</span></a>
 	  </script>
+	  <script id="template-tag-cloud-link" type="text/x-handlebars-template">
+		{{#each tags}}
+		<li><a class="{{ className }}" href="#tag-{{ tag }}"><span></span>{{ tag }}</span></a></li>
+		{{/each}}
+	  </script>
+	  <script id="template-author-cloud-link" type="text/x-handlebars-template">
+		{{#each authors}}
+		<li class="post-author"><a href="#author-{{ author }}"><span></span>{{ author }} ({{ count }})</span></a></li>
+		{{/each}}
+	  </script>
+
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js"></script>
 	<script src="js/script.js"></script>
 
