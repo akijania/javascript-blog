@@ -1,4 +1,9 @@
 'use strict';
+const templates = {
+  articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML),
+  tagLink: Handlebars.compile(document.querySelector('#template-tag-link').innerHTML),
+  authorLink: Handlebars.compile(document.querySelector('#template-author-link').innerHTML)
+};
 
 const titleClickHandler = function (event) {
   event.preventDefault();
@@ -57,7 +62,8 @@ const titleClickHandler = function (event) {
       /* get the title from the title element */
       const articleTitle = article.querySelector(optTitleSelector).innerHTML;
       /* create HTML of the link */
-      const linkHTML = '<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>';
+      const linkHTMLData = {id: articleId, title: articleTitle};
+      const linkHTML = templates.articleLink(linkHTMLData);
       /* insert link into titleList */
       html = html + linkHTML;
     }
@@ -115,7 +121,8 @@ const titleClickHandler = function (event) {
       /* START LOOP: for each tag */
       for (let tag of articleTagsArray){
         /* generate HTML of the link */
-        const linkHTML = '<li><a href="#tag-' + tag + '"><span>' + tag + '</span></a></li>';
+        const linkHTMLData = {id: tag, title: tag};
+        const linkHTML = templates.tagLink(linkHTMLData);
         /* add generated code to html variable */
         html = html + ' '+ linkHTML;
         /* [NEW] check if this link is NOT already in allTags */
@@ -211,7 +218,8 @@ const titleClickHandler = function (event) {
       const authorWrapper = article.querySelector(optArticleAuthorSelector);
       let html = '';
       const author = article.getAttribute('data-author'); 
-      const linkHTML = '<a href="#author-' + author + '"><span>' + author + '</span></a>';
+      const linkHTMLData = {id: author, title: author};
+      const linkHTML = templates.authorLink(linkHTMLData);
       html = html + ' '+ linkHTML;
 
       if(!allAuthors[author]) {
