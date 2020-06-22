@@ -34,7 +34,7 @@ const titleClickHandler = function (event) {
   const clickedArticle = document.querySelector(clickedHref);
   /* [DONE]add class 'active' to the correct article */
   clickedArticle.classList.add('active');
-
+  
 };
 
 {
@@ -207,7 +207,7 @@ const titleClickHandler = function (event) {
     /* START LOOP: for each link */
     /* add tagClickHandler as event listener for that link */
     /* END LOOP: for each link */
-    const links = document.querySelectorAll('.list a');
+    const links = document.querySelectorAll('.tags a');
 
     for (let link of links) {
       link.addEventListener('click', tagClickHandler);
