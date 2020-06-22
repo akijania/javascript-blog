@@ -240,7 +240,7 @@
 					<ul class="list tags">
 					</ul>
 					<h2 class="section-title">Authors</h2>
-					<ul class="list authors">	
+					<ul class="list authors">
 					</ul>
 				</aside>
 			</main>
@@ -257,12 +257,12 @@
 	  </script>
 	  <script id="template-tag-cloud-link" type="text/x-handlebars-template">
 		{{#each tags}}
-		<li><a class="{{ className }}" href="#tag-{{ tag }}"><span></span>{{ tag }}</span></a></li>
+		<li><a class="{{ className }}" href="#tag-{{ tag }}"><span>{{ tag }}</span></a></li>
 		{{/each}}
 	  </script>
 	  <script id="template-author-cloud-link" type="text/x-handlebars-template">
 		{{#each authors}}
-		<li class="post-author"><a href="#author-{{ author }}"><span></span>{{ author }} ({{ count }})</span></a></li>
+		<li class="post-author"><a href="#author-{{ author }}"><span>{{ author }} ({{ count }})</span></a></li>
 		{{/each}}
 	  </script>
 
